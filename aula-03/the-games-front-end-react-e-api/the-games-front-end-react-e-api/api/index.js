@@ -2,7 +2,14 @@ import express from "express";
 import mongoose from "mongoose";
 import Games from "./models/Games.js"
 import User from "./models/Users.js"
+
+//Importando o cors (permite requisições de outro dominio)
+import cors from "cors"
+
 const app = express();
+
+//Configurando o CORS
+app.use(cors())
 
 // Importando as rotas (endpoints) de Games
 import gameRoutes from './routes/gameRoutes.js'

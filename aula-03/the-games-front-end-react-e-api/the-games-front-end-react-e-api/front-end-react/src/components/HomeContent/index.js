@@ -1,7 +1,28 @@
+// Importando useState
+import { useState, useEffect } from "react";
+// O hook useEffect é executado toda vez que o componente é re-renderizado (efeito colateral)
+
 import styles from "@/components/HomeContent/HomeContent.module.css";
 import Loading from "../Loading";
+//Importando o AXIOS (para enviar as requisições HTTP)
+import axios from "axios";
 
 const HomeContent = () => {
+  // Criando um estado para a lista de jogos
+  const [games, setGames] = useState([]);
+
+  // Criando o bloco do useEffect
+  useEffect(() => {
+    const fetchGames = async () => {
+      try {
+        const response = await axios.get("http://localhost:4000/games")
+        console.log(response)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchGames();
+  }, [games]); //dependencia do useEffect
 
   return (
     <>
